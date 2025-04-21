@@ -46,6 +46,8 @@ max_date = retaildata_revised_df['salesdate'].max()
 
 date_range = st.sidebar.date_input("Select Sales Date Range", (min_date, max_date), min_value=min_date, max_value=max_date)
 
+selected_numeric_col = st.sidebar.selectbox("Select Numeric Column for Analysis", options=numeric_columns)
+
 sku_options = retaildata_revised_df['sku'].dropna().unique()
 selected_skus = st.sidebar.multiselect("Select SKU(s)", options=sku_options, default=sku_options)
 
@@ -65,18 +67,16 @@ numeric_columns = [
     'comp_1_price', 'comp_data_min_price', 'comp_data_max_price'
 ]
 
-# Loop for each numeric column
-for col in numeric_columns:
-    if col in filtered_data.columns:
-        st.subheader(f"Distribution of {col.title()}")
-        fig, ax = plt.subplots(figsize=(8, 5))
-        sns.histplot(filtered_data[col].dropna(), bins=30, color='skyblue', kde=True, ax=ax)
-        ax.set_title(f"Histogram of {col.title()}")
-        ax.set_xlabel(col.title())
-        ax.set_ylabel("Frequency")
-        ax.grid(True, linestyle='--', alpha=0.6)
-        ax.get_yaxis().set_major_formatter(plt.FuncFormatter(lambda x, loc: "{:,}".format(int(x))))
-        st.pyplot(fig)
+# Numeric Columns Histogram
+st.header(f"Distribution of {selected_numeric_col}")
+st.write(f"This histogram shows the distribution of {selected_numeric_col} in the filtered data.")
+
+fig, ax = plt.subplots()
+sns.histplot(filtered_data[selected_numeric_col].dropna(), bins=30, color='skyblue', kde=True, ax=ax)
+ax.set_title(f"Histogram of {selected_numeric_col}")
+ax.set_xlabel(selected_numeric_col)
+ax.set_ylabel("Frequency")
+st.pyplot(fig)
 
 # Scatter Plot: Price vs Profit
 st.header("Scatter Plot: Price vs. Profit")
