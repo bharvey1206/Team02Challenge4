@@ -100,3 +100,10 @@ if st.checkbox("Show Correlation Matrix"):
     fig, ax = plt.subplots(figsize=(8, 6))
     sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', ax=ax)
     st.pyplot(fig)
+
+~/.streamlit/config.toml
+[theme]
+base="light"
+primaryColor="#2605ad"
+backgroundColor="#a4a2a2"
+textColor="#08080a"
