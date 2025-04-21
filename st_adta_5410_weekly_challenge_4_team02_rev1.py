@@ -50,9 +50,6 @@ selected_numeric_col = st.sidebar.selectbox("Select Numeric Column for Histogram
 
 scatter_x_col = st.sidebar.selectbox("Scatterplot: Compare Profit vs...", options=[col for col in numeric_columns if col != 'profit'])
 
-sku_options = retaildata_revised_df['sku'].dropna().unique()
-selected_skus = st.sidebar.multiselect("Select SKU(s)", options=sku_options, default=sku_options)
-
 # Filter data based on sidebar
 filtered_data = retaildata_revised_df[
     (retaildata_revised_df['price'].between(*price_range)) &
