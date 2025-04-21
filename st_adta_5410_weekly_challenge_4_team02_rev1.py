@@ -46,7 +46,9 @@ max_date = retaildata_revised_df['salesdate'].max()
 
 date_range = st.sidebar.date_input("Select Sales Date Range", (min_date, max_date), min_value=min_date, max_value=max_date)
 
-selected_numeric_col = st.sidebar.selectbox("Select Numeric Column for Analysis", options=numeric_columns)
+selected_numeric_col = st.sidebar.selectbox("Select Numeric Column for Histogram", options=numeric_columns)
+
+scatter_x_col = st.sidebar.selectbox("Scatterplot: Compare Profit vs...", options=[col for col in numeric_columns if col != 'profit'])
 
 sku_options = retaildata_revised_df['sku'].dropna().unique()
 selected_skus = st.sidebar.multiselect("Select SKU(s)", options=sku_options, default=sku_options)
@@ -78,14 +80,16 @@ ax.set_xlabel(selected_numeric_col)
 ax.set_ylabel("Frequency")
 st.pyplot(fig)
 
-# Scatter Plot: Price vs Profit
-st.header("Scatter Plot: Price vs. Profit")
-st.write("Scatter plot of price versus profit. Optionally add a trendline.")
-show_trendline = st.checkbox("Show Trendline", value=False)
-fig = px.scatter(filtered_data, x='price', y='profit',
-                 title="Price vs. Profit",
-                 labels={"price": "Price", "profit": "Profit"},
-                 trendline="ols" if show_trendline else None)
+# Scatter Plot Profit vs
+st.header(f"Scatter Plot: Profit vs {scatter_x_col}")
+st.write(f"This scatter plot shows the relationship between Profit and {scatter_x_col}.")
+
+show_scatter_trendline = st.checkbox("Show Trendline on Scatterplot", value=False)
+
+fig = px.scatter(filtered_data, x=scatter_x_col, y='profit',
+                 title=f"Profit vs {scatter_x_col}",
+                 labels={scatter_x_col: scatter_x_col, "profit": "Profit"},
+                 trendline="ols" if show_scatter_trendline else None)
 st.plotly_chart(fig)
 
 # Correlation Matrix
