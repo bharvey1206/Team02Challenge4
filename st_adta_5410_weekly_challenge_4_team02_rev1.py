@@ -41,14 +41,10 @@ max_date = retaildata_revised_df['salesdate'].max()
 
 date_range = st.sidebar.date_input("Select Sales Date Range", (min_date, max_date), min_value=min_date, max_value=max_date)
 
-sku_options = retaildata_revised_df['sku'].unique()
-selected_skus = st.sidebar.multiselect("Select SKU(s)", options=sku_options, default=sku_options)
-
 # Filter data based on sidebar
 filtered_data = retaildata_revised_df[
     (retaildata_revised_df['price'].between(*price_range)) &
     (retaildata_revised_df['unitsordered'].between(*units_range))
-    (retaildata_revised_df['sku'].isin(selected_skus))
 ]
 
 # Show filtered data if selected
