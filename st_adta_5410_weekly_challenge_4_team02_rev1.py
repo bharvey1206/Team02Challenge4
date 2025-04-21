@@ -20,6 +20,11 @@ retaildata_revised_df = pd.read_csv('BSS Retail Data_Revised.csv')
 
 retaildata_revised_df.columns = retaildata_revised_df.columns.str.strip().str.lower()
 
+numeric_columns = [
+        'price', 'unitsordered', 'sales', 'profit', 'adspend',
+        'comp_1_price', 'comp_data_min_price', 'comp_data_max_price'
+    ]
+
 # App Title and Description
 st.title("BSS Retail Data Interactive Dashboard")
 st.write("Explore patterns in the data.")
