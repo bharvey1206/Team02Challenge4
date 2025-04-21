@@ -48,7 +48,7 @@ date_range = st.sidebar.date_input("Select Sales Date Range", (min_date, max_dat
 
 selected_numeric_col = st.sidebar.selectbox("Select Numeric Column for Histogram", options=numeric_columns)
 
-scatter_x_col = st.sidebar.selectbox("Scatterplot: Compare Profit vs...", options=[col for col in numeric_columns if col != 'profit'])
+scatter_x_col = st.sidebar.selectbox("Scatterplot: Compare Units Ordered vs...", options=[col for col in numeric_columns if col != 'unitsordered'])
 
 # Filter data based on sidebar
 filtered_data = retaildata_revised_df[
@@ -78,14 +78,14 @@ ax.set_ylabel("Frequency")
 st.pyplot(fig)
 
 # Scatter Plot Profit vs
-st.header(f"Scatter Plot: Profit vs {scatter_x_col}")
-st.write(f"This scatter plot shows the relationship between Profit and {scatter_x_col}.")
+st.header(f"Scatter Plot: Units Ordered vs {scatter_x_col}")
+st.write(f"This scatter plot shows the relationship between Units Ordered and {scatter_x_col}.")
 
 show_scatter_trendline = st.checkbox("Show Trendline on Scatterplot", value=False)
 
-fig = px.scatter(filtered_data, x=scatter_x_col, y='profit',
-                 title=f"Profit vs {scatter_x_col}",
-                 labels={scatter_x_col: scatter_x_col, "profit": "Profit"},
+fig = px.scatter(filtered_data, x=scatter_x_col, y='unitsordered',
+                 title=f"Units Ordered vs {scatter_x_col}",
+                 labels={scatter_x_col: scatter_x_col, "unitsordered": "Units Ordered"},
                  trendline="ols" if show_scatter_trendline else None)
 st.plotly_chart(fig)
 
