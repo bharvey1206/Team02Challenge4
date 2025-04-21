@@ -100,3 +100,4 @@ if st.checkbox("Show Correlation Matrix"):
     fig, ax = plt.subplots(figsize=(8, 6))
     sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', ax=ax)
     st.pyplot(fig)
+    
