@@ -29,6 +29,11 @@ numeric_columns = [
 st.title("BSS Retail Data Interactive Dashboard")
 st.write("Explore patterns in the data.")
 
+user_notes = st.text_area("We will look at how product pricing, competitor prices, and advertising impact both sales revenue and profit. By analyzing these factors, this research aims to help online retailers make better decisions about pricing, advertising, and inventory management to improve business performance.", height=200)
+
+if user_notes:
+    st.write("Here's what you wrote:")
+    st.write(user_notes)
 # Sidebar Filters
 
 #Convert Sales Date
