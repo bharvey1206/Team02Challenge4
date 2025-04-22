@@ -104,3 +104,6 @@ if st.checkbox("Show Correlation Matrix"):
     st.pyplot(fig)
 
 st.write("Insights: Products that are priced similarly to or lower than the cheapest competitors usually have a lot more units sold. On the other hand, products that are priced much higher than their competitors tend to sell less. This indicates that customers are very sensitive to prices, highlighting how crucial it is to have competitive pricing in retail plans.", height=200)
+
+
+st.write("Recommendations: Retailers should keep the prices competitive as this is a key indicator of units ordered. Even with lower prices, units orders make up for the price differences and still a key contributor to profit.", height=200)
