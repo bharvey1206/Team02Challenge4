@@ -29,11 +29,8 @@ numeric_columns = [
 st.title("BSS Retail Data Interactive Dashboard")
 st.write("Explore patterns in the data.")
 
-user_notes = st.text_area("We will look at how product pricing, competitor prices, and advertising impact both sales revenue and profit. By analyzing these factors, this research aims to help online retailers make better decisions about pricing, advertising, and inventory management to improve business performance.", height=200)
+user_notes = st.text_area("Introduction: We will look at how product pricing, competitor prices, and advertising impact both sales revenue and profit. By analyzing these factors, this research aims to help online retailers make better decisions about pricing, advertising, and inventory management to improve business performance.", height=200)
 
-if user_notes:
-    st.write("Here's what you wrote:")
-    st.write(user_notes)
 # Sidebar Filters
 
 #Convert Sales Date
@@ -105,4 +102,5 @@ if st.checkbox("Show Correlation Matrix"):
     fig, ax = plt.subplots(figsize=(8, 6))
     sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', ax=ax)
     st.pyplot(fig)
-    
+
+user_notes = st.text_area("Products that are priced similarly to or lower than the cheapest competitors usually have a lot more units sold. On the other hand, products that are priced much higher than their competitors tend to sell less. This indicates that customers are very sensitive to prices, highlighting how crucial it is to have competitive pricing in retail plans.", height=200)
